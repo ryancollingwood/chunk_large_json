@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 Assuming the source data is in a relative directory `data/` and you want to write out the many small files to `output/`
 ```
-python main.py -input_file data/All_Amazon_Review.json -output_dir output
+python chunk_large_json.py -input_file data/All_Amazon_Review.json -output_dir output
 ```
 
 ## Parameters
