@@ -21,3 +21,19 @@ For an exact definition of JSON Lines see: [https://jsonlines.org/](https://json
 ```
 
 And you'd like to break it into many smaller `.json` documents, then this is for you.
+
+# Getting Up and Running
+
+## Install Dependencies
+Assuming:
+* you haven't got the dependencies installed 
+* you have your own virtual env setup or don't care
+```
+pip install -r requirements.txt
+```
+## Invoking the script
+
+Assuming the source data is in a relative directory `data/` and you want to write out the many small files to `output/`
+```
+python main.py -input_file data/All_Amazon_Review.json -output_dir output
+```
