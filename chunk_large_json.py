@@ -1,3 +1,4 @@
+from os import cpu_count
 import argparse
 import uuid
 from math import ceil
@@ -45,7 +46,7 @@ def check_args(args):
                 f"Number of rows to be loaded ({args.nrows}) is smaller than chunksize ({args.chunksize}) - load more rows or reduce chunksize.")
 
 
-def execute(input_file, output_dir, chunksize, nrows=None):
+def execute(input_file, output_dir, chunksize, processes, nrows=None):
 
     num_tasks = None
     if nrows:
@@ -58,7 +59,7 @@ def execute(input_file, output_dir, chunksize, nrows=None):
     chunked_df = pd.read_json(input_file, chunksize=chunksize,
                               lines=True, nrows=nrows)
 
-    with Pool() as p:
+    with Pool(processes) as p:
         start = datetime.now()
 
         # used https://clay-atlas.com/us/blog/2021/08/02/python-en-use-multi-processing-pool-progress-bar/
@@ -101,8 +102,15 @@ if __name__ == '__main__':
                             type=int
                             )
 
+    arg_parser.add_argument("-processes",
+                            help="Number of processes to spawn to write out the chunks, defaults to number of CPUs.",
+                            nargs="?",
+                            default=cpu_count(),
+                            type=int
+    )    
+
     args = arg_parser.parse_args()
 
     check_args(args)
 
-    execute(args.input_file, args.output_dir, args.chunksize, args.nrows)
+    execute(args.input_file, args.output_dir, args.chunksize, args.processes, args.nrows)

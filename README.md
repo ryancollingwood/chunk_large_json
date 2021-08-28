@@ -43,10 +43,13 @@ python chunk_large_json.py -input_file data/All_Amazon_Review.json -output_dir o
     -input_file INPUT_FILE
                         path to large JSON file
     -output_dir OUTPUT_DIR
-                        Output directory where we'll write out the data - must
-                        NOT already exist e.g. output/
+                        Output directory where we'll write out the data.
+                        Must NOT already exist e.g. output/
     -nrows [NROWS]      Number of lines to read from large JSON file. If not
                         specified all lines are used.
     -chunksize [CHUNKSIZE]
                         Process the large JSON file as separate chunks of this
                         size
+    -processes [PROCESSES]
+                        Number of processes to spawn to write out the chunks,
+                        defaults to number of CPUs.
