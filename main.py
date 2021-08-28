@@ -13,7 +13,7 @@ def save_chunk(df_chunk, output_dir):
     outfile = f"{output_dir}{uuid.uuid4()}.json"
     # TODO could make the orientation a param settable
     # through arguments
-    df_chunk.to_json(outfile, orient="records")
+    df_chunk.to_json(outfile, orient="records", lines=True)
 
 
 def check_args(args):
