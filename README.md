@@ -37,3 +37,16 @@ Assuming the source data is in a relative directory `data/` and you want to writ
 ```
 python main.py -input_file data/All_Amazon_Review.json -output_dir output
 ```
+
+## Parameters
+
+    -input_file INPUT_FILE
+                        path to large JSON file
+    -output_dir OUTPUT_DIR
+                        Output directory where we'll write out the data - must
+                        NOT already exist e.g. output/
+    -nrows [NROWS]      Number of lines to read from large JSON file. If not
+                        specified all lines are used.
+    -chunksize [CHUNKSIZE]
+                        Process the large JSON file as separate chunks of this
+                        size
